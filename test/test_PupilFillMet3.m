@@ -13,6 +13,6 @@ addpath(genpath(cDirSrc));
 addpath(genpath(fullfile(cDirVendor, 'github', 'cnanders', 'matlab-quasar', 'src')));
 addpath(genpath(fullfile(cDirVendor, 'github', 'cnanders', 'matlab-instrument-control', 'src')));
 addpath(genpath(fullfile(cDirVendor, 'github', 'cnanders', 'matlab-pupil-fill-generator', 'src')));
-
+addpath(genpath(fullfile(cDirVendor, 'pnaulleau')));
 
 app = PupilFillMet3();

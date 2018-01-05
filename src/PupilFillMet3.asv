@@ -64,19 +64,10 @@ classdef PupilFillMet3 < mic.Base
         function st = save(this)
            st = struct();
            st.pupilFillGenerator = this.pupilFillGenerator.save();
-           st.uiEditOffsetX = this.uiEditOffsetX.save();
-           st.uiEditOffsetY = this.uiEditOffsetY.save();
         end
         
         function load(this, st)
            this.pupilFillGenerator.load(st.pupilFillGenerator);
-           if isfield(st, 'uiEditOffsetX')
-               this.uiEditOffsetX.load(st.uiEditOffsetX);
-           end
-           
-           if isfield(st, 'uiEditOffsetY')
-               this.uiEditOffsetY.load(st.uiEditOffsetY);
-           end
         end
         
         function delete(this)
@@ -155,17 +146,9 @@ classdef PupilFillMet3 < mic.Base
         function onButtonSet(this, src, evt)
                        
             st = this.pupilFillGenerator.get();
-            x = st.x;
-            y = st.y;
-            
-            % Offset
-            x = x + this.uiEditOffsetX.get();
-            y = y + this.uiEditOffsetY.get();
-            
-            % Scale to [-5 5] V
-            x = x * 5;
-            y = y * 5;
-            
+            x = st.x * 5;
+            y = st.y * 5;
+            x = x + this.uiEditOffsetX.get() *
             t = st.t;
             
             % The DLL uses a weird method where it loads the tfw file
@@ -257,20 +240,7 @@ classdef PupilFillMet3 < mic.Base
         end
         
         function buildButtonSet(this)
-            dLeft = 30;
-            dTop = 670;
-            this.uiButtonSet.build(this.hFigure, dLeft, dTop, 185, 24);
-        end
-        
-        function buildEditOffset(this)
-            
-            dWidth = 80;
-            dLeft = 230;
-            dTop = 670;
-            this.uiEditOffsetX.build(this.hFigure, dLeft, dTop, dWidth, 24);
-            
-            dLeft = 320;
-            this.uiEditOffsetY.build(this.hFigure, dLeft, dTop, dWidth, 24);
+            this.uiButtonSet.build(this.hFigure, 30, 670, 185, 24);
         end
         
         function buildFigure(this)
