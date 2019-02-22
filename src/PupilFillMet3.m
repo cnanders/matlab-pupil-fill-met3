@@ -216,6 +216,9 @@ classdef PupilFillMet3 < mic.Base
             
             dllPath = fullfile(this.getDirDll(), 'libAFG3102.dll');
             hPath = fullfile(this.getDirDll(), 'libAFG3102.h');
+            
+            % Make sure you install Microsoft Visual C++
+            % 2008 SP1 Redistributable Package (x86)
             loadlibrary(dllPath,hPath)
 
             return_IP = calllib('libAFG3102', 'Init', this.cIpAfg);
